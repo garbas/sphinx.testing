@@ -23,6 +23,7 @@ setup(name='sphinx.testing',
       install_requires=[
           'setuptools',
           # -*- Extra requirements: -*-
+          'Pygments',
       ],
       extras_require={
           'layer': [
