@@ -13,5 +13,14 @@ class ConsoleTestCase(unittest.TestCase):
                                  cwd=self.layer['buildout-directory'])
             result, _ = p.communicate()
             p.wait()
-            result = result.rstrip('\n')
-            self.assertEqual(expected_result, result)
+            result = '\n'.join([i.rstrip()
+                    for i in result.split('\n')]).rstrip('\n')
+            if '...' in expected_result:
+                for part in expected_result.split('...'):
+                    pos = result.find(part)
+                    if pos == -1:
+                        import ipdb; ipdb.set_trace()
+                    self.assertNotEqual(pos, -1)
+                    result = result[pos + len(part):]
+            else:
+                self.assertEqual(expected_result, result)

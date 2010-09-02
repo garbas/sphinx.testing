@@ -51,8 +51,8 @@ class SphinxTestSuite(unittest.TestSuite):
             pass
 
 
-        for test_block in rst_document.traverse():
-            test = test_block.rawsource
+        for code_block in rst_document.traverse():
+            test = code_block.rawsource
             if isinstance(test, unittest.TestCase):
                 if layer is not None and \
                    not getattr(test, 'layer', False):
