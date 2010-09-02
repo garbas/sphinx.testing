@@ -24,6 +24,7 @@ setup(name='sphinx.testing',
           'setuptools',
           # -*- Extra requirements: -*-
           'Pygments',
+          'docutils',
       ],
       extras_require={
           'layer': [
