@@ -43,13 +43,14 @@ class SphinxTestSuite(unittest.TestSuite):
 
         settings = docutils.frontend.OptionParser(
                             components=(self.parser,)).get_default_values()
-
+        # TODO: should take configuration from testrunner
+        #       for now we play silent
+        settings.report_level = 5
         rst_document = docutils.utils.new_document(test_file, settings)
         try:
             self.parser.parse(rst_input, rst_document)
         except Exception, e:
             pass
-
 
         for code_block in rst_document.traverse():
             test = code_block.rawsource
