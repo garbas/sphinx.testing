@@ -16,11 +16,12 @@ class ConsoleTestCase(unittest.TestCase):
             result = '\n'.join([i.rstrip()
                     for i in result.split('\n')]).rstrip('\n')
             if '...' in expected_result:
+                error = '\nCOMMAND: ' + command + '\n' + \
+                          'EXPECTED: ' + expected_result + '\n' + \
+                          'RESULT: ' + result + '\n'
                 for part in expected_result.split('...'):
                     pos = result.find(part)
-                    if pos == -1:
-                        import ipdb; ipdb.set_trace()
-                    self.assertNotEqual(pos, -1)
+                    self.assertNotEqual(pos, -1, error)
                     result = result[pos + len(part):]
             else:
                 self.assertEqual(expected_result, result)
