@@ -7,6 +7,8 @@ class ConsoleTestCase(unittest.TestCase):
 
     def runTest(self):
         for command, expected_result in self.commands:
+            # TODO: i guess i should only show this in verbose mode
+            print '% ' + command
             p = subprocess.Popen(command.split(),
                                  stderr=subprocess.STDOUT,
                                  stdout=subprocess.PIPE,
